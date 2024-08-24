@@ -1,0 +1,49 @@
+﻿@model PAA_MVC_W.Modelos.ViewModels.UsuarioVM
+
+@{
+    ViewData["Title"] = Model.Usuario.Id == 0 ? "Crear Usuario" : "Editar Usuario";
+}
+
+<h2 class="text-primary">@ViewData["Title"]</h2>
+
+<form asp-action="Upsert" method="post">
+    <div class="form-group">
+        <label asp-for="Usuario.UserName"></label>
+        <input asp-for="Usuario.UserName" class="form-control" />
+        <span asp-validation-for="Usuario.UserName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Usuario.Email"></label>
+        <input asp-for="Usuario.Email" class="form-control" />
+        <span asp-validation-for="Usuario.Email" class="text-danger"></span>
+    </div>
+
+    <!-- Otros campos -->
+
+    <div class="form-group">
+        <label asp-for="Usuario.UnidadAuditoraId"></label>
+        <select asp-for="Usuario.UnidadAuditoraId" asp-items="Model.UnidadAuditoraLista" class="form-control">
+            <option value="">Seleccione Unidad Auditora</option>
+        </select>
+        <span asp-validation-for="Usuario.UnidadAuditoraId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Usuario.DireccionGeneralId"></label>
+        <select asp-for="Usuario.DireccionGeneralId" asp-items="Model.DireccionGeneralLista" class="form-control">
+            <option value="">Seleccione Dirección General</option>
+        </select>
+        <span asp-validation-for="Usuario.DireccionGeneralId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Usuario.RolId"></label>
+        <select asp-for="Usuario.RolId" asp-items="Model.RolLista" class="form-control">
+            <option value="">Seleccione Rol</option>
+        </select>
+        <span asp-validation-for="Usuario.RolId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

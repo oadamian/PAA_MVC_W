@@ -2,5 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>https</ActiveDebugProfile>
+    <Area_SelectedScaffolderID>AreaScaffolder</Area_SelectedScaffolderID>
+    <Area_SelectedScaffolderCategoryPath>root/Common</Area_SelectedScaffolderCategoryPath>
+    <WebStackScaffolding_DependencyDialogWidth>650</WebStackScaffolding_DependencyDialogWidth>
+    <NameOfLastUsedPublishProfile>D:\oadamian\Desktop\PAA_Desarrollos\Nueva carpeta\PAA_MVC_W\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

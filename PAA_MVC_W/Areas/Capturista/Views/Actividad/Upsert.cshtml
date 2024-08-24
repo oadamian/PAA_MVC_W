@@ -1,0 +1,393 @@
+﻿@model PAA_MVC_W.Modelos.ViewModels.ActividadVM
+@using PAA_MVC_W.Utilidades
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var titulo = "Crear Nueva Actividad";
+}
+
+<form method="post">
+    @if (Model.Actividad.Id != 0)
+    {
+        titulo = "Editar Actividad";
+        <input asp-for="Actividad.Id" hidden/>
+        <input type="hidden" asp-for="Actividad.RowVersion" />
+    }
+
+    <div class="border shadow-lg p-3 mb-5 bg-white rounded-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        @if (TempData[DS.Error] != null)
+        {
+            <div class="alert alert-danger">@TempData[DS.Error]</div>
+        }
+
+    <div class="row">
+        <h2 class="text-info">@titulo</h2>
+    </div>
+
+       <div class="form-floating mb-2 tooltip-container">
+            <input asp-for="Actividad.Clave" class="form-control" id="floatingClave" placeholder="Ingresa Clave" disabled />
+            <label for="floatingClave">Clave</label>
+            <span class="tooltip-text">La clave se generará de forma automática</span>
+            <span asp-validation-for="Actividad.Clave" class="text-danger"></span>
+       </div>
+
+        <!-- Nombre de la Actividad -->
+        <div class="form-floating mb-2">
+            <input asp-for="Actividad.NombreActividad" class="form-control" id="floatingNombreActividad" placeholder="Ingresa Nombre de la Actividad" />
+            <label for="floatingNombreActividad">Nombre de la Actividad</label>
+            <span asp-validation-for="Actividad.NombreActividad" class="text-danger"></span>
+        </div>
+
+        <!-- Objetivo de la Actividad -->
+        <div class="form-floating">
+            <textarea asp-for="Actividad.ObjetivoActividad" class="form-control" id="floatingObjetivoActividad" placeholder="Ingresa Objetivo de la Actividad" rows="5" style="resize: none; height: 100px"></textarea>
+            <label for="floatingObjetivoActividad">Objetivo de la Actividad</label>
+            <span asp-validation-for="Actividad.ObjetivoActividad" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="d-flex gap-2 mb-2">
+            <!-- Cantidad del Producto -->
+            <div class="form-floating flex-fill">
+                <input asp-for="Actividad.CantidadProducto" class="form-control" id="floatingCantidadProducto" placeholder="Ingresa Cantidad del Producto" type="number" />
+                <label for="floatingCantidadProducto">Cantidad del Producto</label>
+                <span asp-validation-for="Actividad.CantidadProducto" class="text-danger"></span>
+            </div>
+
+            <!-- Tipo de Producto -->
+            <div class="form-floating flex-fill">
+                <input asp-for="Actividad.TipoProducto" class="form-control" id="floatingTipoProducto" placeholder="Ingresa Tipo de Producto" />
+                <label for="floatingTipoProducto">Tipo de Producto</label>
+                <span asp-validation-for="Actividad.TipoProducto" class="text-danger"></span>
+            </div>
+
+            <!-- Medio de Verificación -->
+            <div class="form-floating flex-fill">
+                <input asp-for="Actividad.MedioVerificacionProducto" class="form-control" id="floatingMedioVerificacionProducto" placeholder="Ingresa Medio de Verificación" />
+                <label for="floatingMedioVerificacionProducto">Medio de Verificación</label>
+                <span asp-validation-for="Actividad.MedioVerificacionProducto" class="text-danger"></span>
+            </div>
+        </div>
+@* -------------------------------------------------- Aqui configuramos con razor las variables de inicio y fin de los calendarios ----------------------------  *@
+        @{
+           var nextYear = DateTime.Now.Year + 1;
+
+           var minDate1 = new DateTime(nextYear, 1, 1).ToString("yyyy-MM-dd");
+           var maxDate1 = new DateTime(nextYear, 3, 31).ToString("yyyy-MM-dd");
+
+           var minDate2 = new DateTime(nextYear, 4, 1).ToString("yyyy-MM-dd");
+           var maxDate2 = new DateTime(nextYear, 6, 30).ToString("yyyy-MM-dd");
+
+           var minDate3 = new DateTime(nextYear, 7, 1).ToString("yyyy-MM-dd");
+           var maxDate3 = new DateTime(nextYear, 9, 30).ToString("yyyy-MM-dd");
+
+           var minDate4 = new DateTime(nextYear, 10, 1).ToString("yyyy-MM-dd");
+           var maxDate4 = new DateTime(nextYear, 12, 31).ToString("yyyy-MM-dd");
+        }
+
+
+        <!-- Fila con campos de fechas en la misma línea -->
+        <div class="d-flex gap-2 mb-2">
+            <!-- Fecha 1 -->
+            <div class="form-floating flex-fill">
+                <input asp-for="Actividad.Fecha1" class="form-control" id="floatingFecha1" type="date" min="@minDate1" max="@maxDate1"  />
+                <label for="floatingFecha1">Fecha 1</label>
+                <span asp-validation-for="Actividad.Fecha1" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha 2 -->
+            <div class="form-floating flex-fill">
+                <input asp-for="Actividad.Fecha2" class="form-control" id="floatingFecha2" type="date" min="@minDate2" max="@maxDate2"/>
+                <label for="floatingFecha2">Fecha 2</label>
+                <span asp-validation-for="Actividad.Fecha2" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha 3 -->
+            <div class="form-floating flex-fill">
+                <input asp-for="Actividad.Fecha3" class="form-control" id="floatingFecha3" type="date" min="@minDate3" max="@maxDate3"/>
+                <label for="floatingFecha3">Fecha 3</label>
+                <span asp-validation-for="Actividad.Fecha3" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha 4 -->
+            <div class="form-floating flex-fill">
+                <input asp-for="Actividad.Fecha4" class="form-control" id="floatingFecha4" type="date" min="@minDate4" max="@maxDate4"/>
+                <label for="floatingFecha4">Fecha 4</label>
+                <span asp-validation-for="Actividad.Fecha4" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Unidad Auditora -->
+        <div class="form-floating mb-2">
+            <select asp-for="Actividad.UnidadAuditoraId" asp-items="@Model.UnidadAuditoraLista" class="form-select" id="unidadAuditoraDropdown">
+                <option disabled selected>-- Seleccione una Unidad Auditora --</option>
+            </select>
+            <label for=" unidadAuditoraDropdown">Unidad Auditora (UA)</label>
+            <span asp-validation-for="Actividad.UnidadAuditoraId" class="text-danger"></span>
+        </div>
+     
+        <!-- Dirección General -->
+        <div class="form-floating mb-2">
+            @if (Model.IsDireccionGeneralDisabled)
+            {
+                <select asp-for="Actividad.DireccionGeneralId"
+                        asp-items="Model.DireccionGeneralLista"
+                        class="form-select"
+                        id="direccionGeneralDropdown"
+                        disabled="disabled">
+                    <option disabled selected>-- Seleccione una Dirección General --</option>
+                </select>
+            }
+            else
+            {
+                <select asp-for="Actividad.DireccionGeneralId"
+                        asp-items="Model.DireccionGeneralLista"
+                        class="form-select"
+                        id="direccionGeneralDropdown">
+                    <option disabled selected>-- Seleccione una Dirección General --</option>
+                </select>
+            }
+            <label for="direccionGeneralDropdown">Dirección General (DG)</label>
+            <span asp-validation-for="Actividad.DireccionGeneralId" class="text-danger"></span>
+        </div>
+
+        <!-- Fila con campos de selección en la misma línea -->
+        <div class="d-flex gap-2 mb-2">
+            <!-- Objetivo Clave -->
+            <div class="form-floating flex-fill">
+                <select asp-for="Actividad.ObjetivoClave" class="form-select" id="floatingObjetivoClave">
+                    <option value=true>Sí</option>
+                    <option value=false>No</option>
+                </select>
+                <label for="floatingObjetivoClave">Objetivo Clave</label>
+                <span asp-validation-for="Actividad.ObjetivoClave" class="text-danger"></span>
+            </div>
+
+            <!-- Actividad Control -->
+            <div class="form-floating flex-fill">
+                <select asp-for="Actividad.ActividadControl" class="form-select" id="floatingActividadControl">
+                    <option value=true>Sí</option>
+                    <option value=false>No</option>
+                </select>
+                <label for="floatingActividadControl">Actividad Control</label>
+                <span asp-validation-for="Actividad.ActividadControl" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Supuestos -->
+        <div class="form-floating mb-2">
+            <textarea asp-for="Actividad.Supuestos" class="form-control" id="floatingSupuestos" placeholder="Ingresa Supuestos" rows="5" style="resize: none; height: 100px"></textarea>
+            <label for="floatingSupuestos">Supuestos</label>
+            <span asp-validation-for="Actividad.Supuestos" class="text-danger"></span>
+        </div>
+        <br />
+        <!-- Acciones -->
+        <div class="form-floating mb-2">
+            <textarea asp-for="Actividad.Acciones" class="form-control" id="floatingAcciones" placeholder="Ingresa Acciones" rows="5" style="resize: none; height: 100px"></textarea>
+            <label for="floatingAcciones">Acciones</label>
+            <span asp-validation-for="Actividad.Acciones" class="text-danger"></span>
+        </div>
+        <br />
+        <!-- Especificaciones -->
+        <div class="form-floating mb-2">
+            <textarea asp-for="Actividad.Especificaciones" class="form-control" id="floatingEspecificaciones" placeholder="Ingresa Especificaciones" rows="5" style="resize: none; height: 100px"></textarea>
+            <label for="floatingEspecificaciones">Especificaciones</label>
+            <span asp-validation-for="Actividad.Especificaciones" class="text-danger"></span>
+        </div>
+        <br />
+        <!-- Fila con campos de selección en la misma línea -->
+        <div class="d-flex gap-2 mb-2">
+            <!-- Aplica Indicador -->
+            <div class="form-floating flex-fill">
+                <select asp-for="Actividad.AplicaIndicador" class="form-select" id="floatingAplicaIndicador">
+                    <option value=true>Sí</option>
+                    <option value=false>No</option>
+                </select>
+                <label for="floatingAplicaIndicador">Aplica Indicador</label>
+                <span asp-validation-for="Actividad.AplicaIndicador" class="text-danger"></span>
+            </div>
+
+            <!-- Estado -->
+            <div class="form-floating flex-fill">
+                <select asp-for="Actividad.Estado" class="form-select" id="floatingEstado">
+                    <option value=true>Activo</option>
+                    <option value=false>Inactivo</option>
+                </select>
+                <label for="floatingEstado">Estado</label>
+                <span asp-validation-for="Actividad.Estado" class="text-danger"></span>
+            </div>
+        </div>
+
+        <br />
+        <div>
+            @if (Model.Actividad.Id != 0)
+            {
+                    <partial name="_BotonesActualizarYRegresar" model="Model.Actividad.Id"></partial>
+            }
+            else
+            {
+                    <partial name="_BotonesCrearYRegresar" />
+            }
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+
+        <script>
+
+
+// ---------------- la siguiente funcionabort success para cargar localStorage referecte a las listas desplegables de UA yield DG "DG depende de UA"--------------------------------------------
+            $(document).ready(function() {
+                $('.js-example-basic-single').select2();
+            });
+
+            $(document).ready(function () {
+                $('#unidadAuditoraDropdown').change(function () {
+                    var unidadAuditoraId = $(this).val();
+
+                    if (unidadAuditoraId) {
+                        $.ajax({
+                            url: '@Url.Action("ObtenerDireccionesGenerales", "Actividad")',
+                            type: 'GET',
+                            data: { unidadAuditoraId: unidadAuditoraId },
+                            success: function (data) {
+                                var $direccionGeneralDropdown = $('#direccionGeneralDropdown');
+                                $direccionGeneralDropdown.empty().prop('disabled', false);
+                                $direccionGeneralDropdown.append('<option value="">-- Seleccione una Dirección General --</option>');
+
+                                $.each(data, function (index, item) {
+                                    $direccionGeneralDropdown.append($('<option>', {
+                                        value: item.value,
+                                        text: item.text
+                                    }));
+                                });
+                            }
+                        });
+                    } else {
+                        $('#direccionGeneralDropdown').empty().prop('disabled', true);
+                    }
+                });
+            });
+
+
+// -------------------- el siguiente evento sirve para las validaciones d elos campos Supuestos y acciones ca vez aue se ejecuta el Objetivo clave ---------------------------
+            document.addEventListener("DOMContentLoaded", function() {
+            const objetivoClaveSelect = document.getElementById('floatingObjetivoClave');
+            const supuestosTextArea = document.getElementById('floatingSupuestos');
+            const accionesTextArea = document.getElementById('floatingAcciones');
+
+            objetivoClaveSelect.addEventListener('change', function() {
+                if (this.value === 'true') {
+                    // Habilitar campos
+                    supuestosTextArea.disabled = false;
+                    accionesTextArea.disabled = false;
+                    // Asegurarse de que no contengan 'no aplica'
+                            if (supuestosTextArea.value === 'No Aplica') supuestosTextArea.value = '';
+                            if (accionesTextArea.value === 'No Aplica') accionesTextArea.value = '';
+                } else {
+                    // Deshabilitar campos y poner 'no aplica'
+                    supuestosTextArea.disabled = true;
+                    accionesTextArea.disabled = true;
+                            supuestosTextArea.value = 'No Aplica';
+                            accionesTextArea.value = 'No Aplica';
+                }
+            });
+
+            // Disparar el evento change al cargar para establecer el estado inicial
+            objetivoClaveSelect.dispatchEvent(new Event('change'));
+        });
+//------------------- validar fecha 1--------------------------------------------
+ document.getElementById("floatingFecha1").addEventListener("change", function() {
+        var inputDate = new Date(this.value);
+        var dayOfWeek = inputDate.getUTCDay();
+
+        // Verificar si es sábado (6) o domingo (0)
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            this.setCustomValidity("No se pueden seleccionar sábados o domingos.");
+        } else {
+            this.setCustomValidity("");
+        }
+    });
+
+    document.getElementById("floatingFecha1").addEventListener("input", function() {
+        var inputDate = new Date(this.value);
+        var dayOfWeek = inputDate.getUTCDay();
+
+        // Si el día es sábado (6) o domingo (0), limpiar el campo de fecha
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            this.value = "";
+        }
+    });
+
+ //--------------------------------------------- validar fecha 2--------------------------------------------
+ document.getElementById("floatingFecha2").addEventListener("change", function() {
+        var inputDate = new Date(this.value);
+        var dayOfWeek = inputDate.getUTCDay();
+
+        // Verificar si es sábado (6) o domingo (0)
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            this.setCustomValidity("No se pueden seleccionar sábados o domingos.");
+        } else {
+            this.setCustomValidity("");
+        }
+    });
+
+    document.getElementById("floatingFecha2").addEventListener("input", function() {
+        var inputDate = new Date(this.value);
+        var dayOfWeek = inputDate.getUTCDay();
+
+        // Si el día es sábado (6) o domingo (0), limpiar el campo de fecha
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            this.value = "";
+        }
+    });
+ //---------------------------------------------------- validar fecha 3--------------------------------------------
+ document.getElementById("floatingFecha3").addEventListener("change", function() {
+        var inputDate = new Date(this.value);
+        var dayOfWeek = inputDate.getUTCDay();
+
+        // Verificar si es sábado (6) o domingo (0)
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            this.setCustomValidity("No se pueden seleccionar sábados o domingos.");
+        } else {
+            this.setCustomValidity("");
+        }
+    });
+
+    document.getElementById("floatingFecha3").addEventListener("input", function() {
+        var inputDate = new Date(this.value);
+        var dayOfWeek = inputDate.getUTCDay();
+
+        // Si el día es sábado (6) o domingo (0), limpiar el campo de fecha
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            this.value = "";
+        }
+    });
+//------------------------------------------------ validar fecha 4--------------------------------------------
+ document.getElementById("floatingFecha4").addEventListener("change", function() {
+        var inputDate = new Date(this.value);
+        var dayOfWeek = inputDate.getUTCDay();
+
+        // Verificar si es sábado (6) o domingo (0)
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            this.setCustomValidity("No se pueden seleccionar sábados o domingos.");
+        } else {
+            this.setCustomValidity("");
+        }
+    });
+
+    document.getElementById("floatingFecha4").addEventListener("input", function() {
+        var inputDate = new Date(this.value);
+        var dayOfWeek = inputDate.getUTCDay();
+
+        // Si el día es sábado (6) o domingo (0), limpiar el campo de fecha
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            this.value = "";
+        }
+    });
+
+        </script>
+}

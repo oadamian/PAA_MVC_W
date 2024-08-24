@@ -1,9 +1,22 @@
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using PAA_MVC_W.AccesoDatos.Data;
+using PAA_MVC_W.AccesoDatos.Repositorio.IRepositorio;
+using PAA_MVC_W.AccesoDatos.Repositorio;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+builder.Services.AddScoped<IUnidadTrabajo, UnidadTrabajo>();
 
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
    .AddNegotiate();
@@ -34,6 +47,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Home}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

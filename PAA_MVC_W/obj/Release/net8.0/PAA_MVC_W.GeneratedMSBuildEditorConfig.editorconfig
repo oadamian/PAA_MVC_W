@@ -1,0 +1,131 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = PAA_MVC_W
+build_property.RootNamespace = PAA_MVC_W
+build_property.ProjectDir = D:\oadamian\Desktop\PAA_Desarrollos\Nueva carpeta\PAA_MVC_W\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = D:\oadamian\Desktop\PAA_Desarrollos\Nueva carpeta\PAA_MVC_W
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/Articulo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXJ0aWN1bG9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/Articulo/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXJ0aWN1bG9cVXBzZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/DireccionGeneral/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGlyZWNjaW9uR2VuZXJhbFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/DireccionGeneral/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGlyZWNjaW9uR2VuZXJhbFxVcHNlcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/Fraccion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRnJhY2Npb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/Fraccion/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRnJhY2Npb25cVXBzZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/UnidadAuditora/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pZGFkQXVkaXRvcmFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/UnidadAuditora/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVW5pZGFkQXVkaXRvcmFcVXBzZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Capturista/Views/Actividad/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2FwdHVyaXN0YVxWaWV3c1xBY3RpdmlkYWRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Capturista/Views/Actividad/Upsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2FwdHVyaXN0YVxWaWV3c1xBY3RpdmlkYWRcVXBzZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Capturista/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2FwdHVyaXN0YVxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Capturista/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ2FwdHVyaXN0YVxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Home/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSG9tZVxWaWV3c1xIb21lXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Home/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSG9tZVxWaWV3c1xIb21lXFByaXZhY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Home/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSG9tZVxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Areas/Home/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSG9tZVxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Views/Shared/_BotonesActualizarYRegresar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Cb3RvbmVzQWN0dWFsaXphcllSZWdyZXNhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Views/Shared/_BotonesCrearYRegresar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Cb3RvbmVzQ3JlYXJZUmVncmVzYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Views/Shared/_Notificaciones.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob3RpZmljYWNpb25lcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/oadamian/Desktop/PAA_Desarrollos/Nueva carpeta/PAA_MVC_W/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-310wjt19cp

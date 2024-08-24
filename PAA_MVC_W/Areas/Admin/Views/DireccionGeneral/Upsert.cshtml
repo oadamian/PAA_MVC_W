@@ -1,0 +1,156 @@
+﻿@model PAA_MVC_W.Modelos.ViewModels.DireccionGeneralVM
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var titulo = "Crear Nueva Dirección General";
+}
+
+<form method="post">
+    @if (Model.DireccionGeneral.Id != 0)
+    {
+        titulo = "Editar Dirección General";
+        <input asp-for="DireccionGeneral.Id" hidden/>
+    }
+
+<div class="border p-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+        <h2 class="text-info">@titulo</h2>
+    </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>CC</label>
+                <input type="text" asp-for="DireccionGeneral.Cc" class="form-control" placeholder="Centro de Costos" />
+                <span asp-validation-for="DireccionGeneral.Cc" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Siglas</label>
+                <input type="text" asp-for="DireccionGeneral.Siglas" class="form-control" placeholder="Siglas" id="siglas" />
+                <span asp-validation-for="DireccionGeneral.Siglas" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Nombre</label>
+                <input type="text" asp-for="DireccionGeneral.Nombre_DG" class="form-control" placeholder="Nombre" id="nombre_dg" />
+                <span asp-validation-for="DireccionGeneral.Nombre_DG" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Estado</label>
+                <select asp-for="DireccionGeneral.UnidadAuditoraId" asp-items="@Model.UnidadAuditoraLista" class="js-example-basic-single form-select">
+                    <option disabled selected>-- Seleccione un Área --</option>
+                </select>
+                <span asp-validation-for="DireccionGeneral.UnidadAuditoraId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Estado</label>
+                <select asp-for="DireccionGeneral.Estado" class="form-select">
+                    <option value=true>Activo</option>
+                    <option value=false>Inactivo</option>
+                </select>
+                <span asp-validation-for="DireccionGeneral.Estado" class="text-danger"></span>
+            </div>
+        </div>
+
+        <br />
+        <div>
+            @if (Model.DireccionGeneral.Id != 0)
+            {
+                <partial name="_BotonesActualizarYRegresar" model="Model.DireccionGeneral.Id"></partial>
+
+            }
+            else
+            {
+                <partial name="_BotonesCrearYRegresar" />
+            }
+        </div>
+
+</div>
+
+
+
+
+
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        //select2 para los dropdownlist
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+
+
+        document.getElementById("nombre_dg").addEventListener('change', function () { 
+            validarNombre();
+        });
+
+        document.getElementById("siglas").addEventListener('change', function () {
+            validarSiglas();
+        });
+
+        function validarNombre()
+        {
+            var url = '@Url.Content("~/")' + "Admin/DireccionGeneral/ValidarNombre";
+            var id = '#id';
+            var nombre = '#nombre_dg';
+
+            $.getJSON(url, { id: $(id).val(), nombre: $(nombre).val() }, function (data) {
+
+                $.each(data, function (key, value) {
+                    if (value) {
+                        var nombre = document.getElementById("nombre_dg");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Nombre "' + nombre.value +'" ya existe en la base',
+                            icon: 'error'
+                        });
+                        nombre.value = "";
+                    }
+                });
+
+            })
+
+        }
+
+        function validarSiglas() {
+            var url = '@Url.Content("~/")' + "Admin/DireccionGeneral/ValidarSiglas";
+            var id = '#id';
+            var siglas = '#siglas';
+
+            $.getJSON(url, { id: $(id).val(), siglas: $(siglas).val() }, function (data) {
+
+                $.each(data, function (key, value) {
+                    if (value) {
+                        var siglas = document.getElementById("siglas");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Siglas "' + siglas.value + '" ya existe en la base',
+                            icon: 'error'
+                        });
+                        siglas.value = "";
+                    }
+                });
+
+            })
+
+        }
+        
+    </script>
+    }

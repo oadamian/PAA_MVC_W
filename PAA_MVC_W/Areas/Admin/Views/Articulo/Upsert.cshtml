@@ -1,0 +1,220 @@
+﻿@model PAA_MVC_W.Modelos.ViewModels.ArticuloVM
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var titulo = "Crear Nuevo Articulo";
+}
+
+<form method="post">
+    @if (Model.Articulo.Id != 0)
+    {
+        titulo = "Editar Articulo";
+        <input asp-for="Articulo.Id" hidden/>
+    }
+
+<div class="border p-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+        <h2 class="text-info">@titulo</h2>
+    </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Número</label>
+                <input type="number" asp-for="Articulo.Num" class="form-control" placeholder="Ingresa Número Articulo" />
+                <span asp-validation-for="Articulo.Num" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+               <label>Numeral</label>
+                <select asp-for="Articulo.Bis" class="form-select">
+                    <option disabled selected>-- Seleccione un Numeral --</option>
+                   <option value="Bis">Bis</option>
+                   <option value="Ter">Ter</option>
+                   <option value="Quater">Quater</option>
+                   <option value="Quinquies">Quinquies</option>
+                   <option value="Sexies">Sexies</option>
+                   <option value="Septies">Septies</option>
+                   <option value="Octies">Octies</option>
+                   <option value="Novies">Novies</option>
+                   <option value="Decies">Decies</option>
+                </select>
+                <span asp-validation-for="Articulo.Bis" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Desripción</label>
+                <textarea asp-for="Articulo.Descripcion" class="form-control" placeholder="Ingresa Descripción" id="nombre_dg" rows="15" style="resize: none;"></textarea>
+                <span asp-validation-for="Articulo.Descripcion" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>UA</label>
+                <select asp-for="Articulo.UnidadAuditoraId" asp-items="@Model.UnidadAuditoraLista" class="js-example-basic-single form-select" id="unidadAuditoraDropdown">
+                    <option disabled selected>-- Seleccione una Área --</option>
+                </select>
+                <span asp-validation-for="Articulo.UnidadAuditoraId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>DG</label>
+                @* Aquí es donde manejas la lógica de 'disabled' *@
+                @if (Model.IsDireccionGeneralDisabled)
+                {
+                    <select asp-for="Articulo.DireccionGeneralId"
+                            asp-items="Model.DireccionGeneralLista"
+                            class="js-example-basic-single form-select"
+                            id="direccionGeneralDropdown"
+                            disabled="disabled">
+                        <option disabled selected>-- Seleccione una Dirección General --</option>
+                    </select>
+                }
+                else
+                {
+                    <select asp-for="Articulo.DireccionGeneralId"
+                            asp-items="Model.DireccionGeneralLista"
+                            class="js-example-basic-single form-select"
+                            id="direccionGeneralDropdown">
+                        <option disabled selected>-- Seleccione una Dirección General --</option>
+                    </select>
+                }
+
+
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Estado</label>
+                <select asp-for="Articulo.Estado" class="form-select">
+                    <option value=true>Activo</option>
+                    <option value=false>Inactivo</option>
+                </select>
+                <span asp-validation-for="Articulo.Estado" class="text-danger"></span>
+            </div>
+        </div>
+
+        <br />
+        <div>
+            @if (Model.Articulo.Id != 0)
+            {
+                <partial name="_BotonesActualizarYRegresar" model="Model.Articulo.Id"></partial>
+
+            }
+            else
+            {
+                <partial name="_BotonesCrearYRegresar" />
+            }
+        </div>
+
+</div>
+
+
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        //select2 para los dropdownlist
+        $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+        });
+
+
+
+        document.getElementById("nombre_dg").addEventListener('change', function () { 
+            validarNombre();
+        });
+
+        // document.getElementById("siglas").addEventListener('change', function () {
+        //     validarSiglas();
+        // });
+
+        function validarNombre()
+        {
+            var url = '@Url.Content("~/")' + "Admin/DireccionGeneral/ValidarNombre";
+            var id = '#id';
+            var nombre = '#nombre_dg';
+
+            $.getJSON(url, { id: $(id).val(), nombre: $(nombre).val() }, function (data) {
+
+                $.each(data, function (key, value) {
+                    if (value) {
+                        var nombre = document.getElementById("nombre_dg");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Nombre "' + nombre.value +'" ya existe en la base',
+                            icon: 'error'
+                        });
+                        nombre.value = "";
+                    }
+                });
+
+            })
+
+        }
+
+        function validarSiglas() {
+            var url = '@Url.Content("~/")' + "Admin/DireccionGeneral/ValidarSiglas";
+            var id = '#id';
+            var siglas = '#siglas';
+
+            $.getJSON(url, { id: $(id).val(), siglas: $(siglas).val() }, function (data) {
+
+                $.each(data, function (key, value) {
+                    if (value) {
+                        var siglas = document.getElementById("siglas");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Siglas "' + siglas.value + '" ya existe en la base',
+                            icon: 'error'
+                        });
+                        siglas.value = "";
+                    }
+                });
+
+            })
+
+        }
+
+        $(document).ready(function () {
+            $('#unidadAuditoraDropdown').change(function () {
+                var unidadAuditoraId = $(this).val();
+
+                if (unidadAuditoraId) {
+                    $.ajax({
+                        url: '@Url.Action("ObtenerDireccionesGenerales", "Articulo")',
+                        type: 'GET',
+                        data: { unidadAuditoraId: unidadAuditoraId },
+                        success: function (data) {
+                            var $direccionGeneralDropdown = $('#direccionGeneralDropdown');
+                            $direccionGeneralDropdown.empty().prop('disabled', false);
+                            $direccionGeneralDropdown.append('<option value="">Seleccione una Dirección General</option>');
+
+                            $.each(data, function (index, item) {
+                                $direccionGeneralDropdown.append($('<option>', {
+                                    value: item.value,
+                                    text: item.text
+                                }));
+                            });
+                        }
+                    });
+                } else {
+                    $('#direccionGeneralDropdown').empty().prop('disabled', true);
+                }
+            });
+        });
+
+    </script>
+    }

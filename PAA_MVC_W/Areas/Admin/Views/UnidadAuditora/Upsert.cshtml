@@ -1,0 +1,145 @@
+﻿@model PAA_MVC_W.Modelos.UnidadAuditora
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var titulo = "Crear Área";
+}
+
+<form method="post">
+   <div style="padding-left:15%; padding-right:15%; padding-bottom:inherit.4rem">
+
+      <div class="row border-0">
+           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+      </div>
+
+      @if(Model.Id!=0)
+        {
+            //Actualizar
+
+            titulo = "Actualizar Área";
+            <input type="hidden" asp-for="Id" id="id"/>
+        }
+
+        <div class="col border-bottom p-0">
+            <h2 class="text-primary">@titulo</h2>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>CC</label>
+                <input type="text" asp-for="Cc" class="form-control" placeholder="Centro de Costos"/>
+                <span asp-validation-for="Cc" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Siglas</label>
+                <input type="text" asp-for="Siglas" class="form-control" placeholder="Siglas" id="siglas"/>
+                <span asp-validation-for="Siglas" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Nombre</label>
+                <input type="text" asp-for="Nombre_UA" class="form-control" placeholder="Nombre" id="nombre_ua"/>
+                <span asp-validation-for="Nombre_UA" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Estado</label>
+              <select asp-for="Estado" class="form-select">
+                  <option value=true>Activo</option>
+                  <option value=false>Inactivo</option>
+              </select>
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div>
+            @if(Model.Id!=0)
+            {
+                <partial name="_BotonesActualizarYRegresar" model="Model.Id"></partial>
+
+            }
+            else
+            {
+                <partial name="_BotonesCrearYRegresar" /> 
+            }
+        </div>
+
+    </div>
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        //select2 para los dropdownlist
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+
+
+        document.getElementById("nombre_ua").addEventListener('change', function () { 
+            validarNombre();
+        });
+
+        document.getElementById("siglas").addEventListener('change', function () {
+            validarSiglas();
+        });
+
+        function validarNombre()
+        {
+            var url = '@Url.Content("~/")' + "Admin/UnidadAuditora/ValidarNombre";
+            var id = '#id';
+            var nombre = '#nombre_ua';
+
+            $.getJSON(url, { id: $(id).val(), nombre: $(nombre).val() }, function (data) {
+
+                $.each(data, function (key, value) {
+                    if (value) {
+                        var nombre = document.getElementById("nombre_ua");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Nombre "' + nombre.value +'" ya existe en la base',
+                            icon: 'error'
+                        });
+                        nombre.value = "";
+                    }
+                });
+
+            })
+
+        }
+
+        function validarSiglas() {
+            var url = '@Url.Content("~/")' + "Admin/UnidadAuditora/ValidarSiglas";
+            var id = '#id';
+            var siglas = '#siglas';
+
+            $.getJSON(url, { id: $(id).val(), siglas: $(siglas).val() }, function (data) {
+
+                $.each(data, function (key, value) {
+                    if (value) {
+                        var siglas = document.getElementById("siglas");
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Siglas "' + siglas.value + '" ya existe en la base',
+                            icon: 'error'
+                        });
+                        siglas.value = "";
+                    }
+                });
+
+            })
+
+        }
+
+    </script>
+}
