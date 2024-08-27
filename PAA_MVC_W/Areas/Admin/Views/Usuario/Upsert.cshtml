@@ -1,49 +1,161 @@
 ﻿@model PAA_MVC_W.Modelos.ViewModels.UsuarioVM
 
 @{
-    ViewData["Title"] = Model.Usuario.Id == 0 ? "Crear Usuario" : "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var titulo = "Crear Nuevo Usuario";
 }
 
-<h2 class="text-primary">@ViewData["Title"]</h2>
+<form method="post">
+    @if (Model.Usuario.Id != 0)
+    {
+        titulo = "Editar Usuario";
+        <input asp-for="Usuario.Id" hidden />
+    }
 
-<form asp-action="Upsert" method="post">
-    <div class="form-group">
-        <label asp-for="Usuario.UserName"></label>
-        <input asp-for="Usuario.UserName" class="form-control" />
-        <span asp-validation-for="Usuario.UserName" class="text-danger"></span>
+    <div class="border p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row">
+            <h2 class="text-info">@titulo</h2>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>UserName</label>
+                <input asp-for="Usuario.UserName" class="form-control" placeholder="Ingresa Nombre de Usuario" />
+                <span asp-validation-for="Usuario.UserName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Email</label>
+                <input type="email" asp-for="Usuario.Email" class="form-control" placeholder="Ingresa Email" />
+                <span asp-validation-for="Usuario.Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Nombres</label>
+                <input asp-for="Usuario.Nombres" class="form-control" placeholder="Ingresa Nombres" />
+                <span asp-validation-for="Usuario.Nombres" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Apellidos</label>
+                <input asp-for="Usuario.Apellidos" class="form-control" placeholder="Ingresa Apellidos" />
+                <span asp-validation-for="Usuario.Apellidos" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Rol</label>
+                <select asp-for="Usuario.RolId" asp-items="@Model.RolLista" class="form-select" id="rolDropdown">
+                    <option disabled selected>-- Seleccione un Rol --</option>
+                </select>
+                <span asp-validation-for="Usuario.RolId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Unidad Auditora</label>
+                <select asp-for="Usuario.UnidadAuditoraId" asp-items="@Model.UnidadAuditoraLista" class="form-select" id="unidadAuditoraDropdown">
+                    <option disabled selected>-- Seleccione una Unidad Auditora --</option>
+                </select>
+                <span asp-validation-for="Usuario.UnidadAuditoraId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Dirección General</label>
+                @if (Model.IsDireccionGeneralDisabled)
+                {
+                    <select asp-for="Usuario.DireccionGeneralId"
+                            asp-items="Model.DireccionGeneralLista"
+                            class="form-select"
+                            id="direccionGeneralDropdown"
+                            disabled="disabled">
+                        <option disabled selected>-- Seleccione una Dirección General --</option>
+                    </select>
+                }
+                else
+                {
+                    <select asp-for="Usuario.DireccionGeneralId"
+                            asp-items="Model.DireccionGeneralLista"
+                            class="form-select"
+                            id="direccionGeneralDropdown">
+                        <option disabled selected>-- Seleccione una Dirección General --</option>
+                    </select>
+                }
+                <span asp-validation-for="Usuario.DireccionGeneralId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Estado</label>
+                <select asp-for="Usuario.Estado" class="form-select">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+                <span asp-validation-for="Usuario.Estado" class="text-danger"></span>
+            </div>
+        </div>
+
+        <br />
+        <div>
+            @if (Model.Usuario.Id != 0)
+            {
+                <partial name="_BotonesActualizarYRegresar" model="Model.Usuario.Id"></partial>
+            }
+            else
+            {
+                <partial name="_BotonesCrearYRegresar" />
+            }
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Usuario.Email"></label>
-        <input asp-for="Usuario.Email" class="form-control" />
-        <span asp-validation-for="Usuario.Email" class="text-danger"></span>
-    </div>
-
-    <!-- Otros campos -->
-
-    <div class="form-group">
-        <label asp-for="Usuario.UnidadAuditoraId"></label>
-        <select asp-for="Usuario.UnidadAuditoraId" asp-items="Model.UnidadAuditoraLista" class="form-control">
-            <option value="">Seleccione Unidad Auditora</option>
-        </select>
-        <span asp-validation-for="Usuario.UnidadAuditoraId" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Usuario.DireccionGeneralId"></label>
-        <select asp-for="Usuario.DireccionGeneralId" asp-items="Model.DireccionGeneralLista" class="form-control">
-            <option value="">Seleccione Dirección General</option>
-        </select>
-        <span asp-validation-for="Usuario.DireccionGeneralId" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Usuario.RolId"></label>
-        <select asp-for="Usuario.RolId" asp-items="Model.RolLista" class="form-control">
-            <option value="">Seleccione Rol</option>
-        </select>
-        <span asp-validation-for="Usuario.RolId" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        // Inicializa select2 para dropdowns
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+
+        // Validación AJAX para nombre de usuario y otros campos
+        $('#unidadAuditoraDropdown').change(function () {
+            var unidadAuditoraId = $(this).val();
+
+            if (unidadAuditoraId) {
+                $.ajax({
+                    url: '@Url.Action("ObtenerDireccionesGenerales", "Usuario")',
+                    type: 'GET',
+                    data: { unidadAuditoraId: unidadAuditoraId },
+                    success: function (data) {
+                        var $direccionGeneralDropdown = $('#direccionGeneralDropdown');
+                        $direccionGeneralDropdown.empty().prop('disabled', false);
+                        $direccionGeneralDropdown.append('<option value="">Seleccione una Dirección General</option>');
+
+                        $.each(data, function (index, item) {
+                            $direccionGeneralDropdown.append($('<option>', {
+                                value: item.value,
+                                text: item.text
+                            }));
+                        });
+                    }
+                });
+            } else {
+                $('#direccionGeneralDropdown').empty().prop('disabled', true);
+            }
+        });
+    </script>
+}

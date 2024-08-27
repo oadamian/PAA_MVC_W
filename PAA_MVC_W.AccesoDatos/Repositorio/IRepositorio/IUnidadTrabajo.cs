@@ -21,6 +21,8 @@ namespace PAA_MVC_W.AccesoDatos.Repositorio.IRepositorio
 
         IUsuarioRepositorio Usuario { get; }
 
+        IRolRepositorio Rol { get; }
+
 
         Task Guardar();
     }

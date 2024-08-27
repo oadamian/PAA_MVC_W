@@ -28,15 +28,15 @@ namespace PAA_MVC_W.Modelos
         [MaxLength(160, ErrorMessage = "Apellidos es menor a 160 caracteres")]
         public string Apellidos { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Estado es Requerido")]
         public bool Estado { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Rol es Requerido")]
         public int? RolId { get; set; }
         public Rol Rol { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Unidad Auditora es requerida")]
         public int UnidadAuditoraId { get; set; }
         public UnidadAuditora UnidadAuditora { get; set; }
 

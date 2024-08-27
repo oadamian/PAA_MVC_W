@@ -25,8 +25,16 @@
       "PackagePath": "staticwebassets\\js\\Admin\\fraccion.js"
     },
     {
+      "Id": "D:\\oadamian\\Desktop\\PAA_Desarrollos\\Nueva carpeta\\PAA_MVC_W\\wwwroot\\js\\Admin\\rol.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\rol.js"
+    },
+    {
       "Id": "D:\\oadamian\\Desktop\\PAA_Desarrollos\\Nueva carpeta\\PAA_MVC_W\\wwwroot\\js\\Admin\\unidadAuditora.js",
       "PackagePath": "staticwebassets\\js\\Admin\\unidadAuditora.js"
+    },
+    {
+      "Id": "D:\\oadamian\\Desktop\\PAA_Desarrollos\\Nueva carpeta\\PAA_MVC_W\\wwwroot\\js\\Admin\\usuario.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\usuario.js"
     },
     {
       "Id": "D:\\oadamian\\Desktop\\PAA_Desarrollos\\Nueva carpeta\\PAA_MVC_W\\wwwroot\\js\\Capturista\\actividad.js",

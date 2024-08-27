@@ -24,6 +24,8 @@ namespace PAA_MVC_W.AccesoDatos.Repositorio
         public IActividadRepositorio Actividad { get; private set; }
 
         public IUsuarioRepositorio Usuario { get; private set; }
+        public IRolRepositorio Rol { get; private set; }
+
 
         public UnidadTrabajo(ApplicationDbContext db)
         {
@@ -34,7 +36,7 @@ namespace PAA_MVC_W.AccesoDatos.Repositorio
             Fraccion=new FraccionRepositorio(_db);
             Actividad = new ActividadRepositorio(_db);
             Usuario=new UsuarioRepositorio(_db);
-          
+            Rol=new RolRepositorio(_db);
            
             
         }

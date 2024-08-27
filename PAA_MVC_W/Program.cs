@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using PAA_MVC_W.AccesoDatos.Data;
 using PAA_MVC_W.AccesoDatos.Repositorio.IRepositorio;
 using PAA_MVC_W.AccesoDatos.Repositorio;
+using PAA_MVC_W.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,13 @@ builder.Services.AddAuthorization(options =>
     options.FallbackPolicy = options.DefaultPolicy;
 });
 builder.Services.AddRazorPages();
+
+// Registrar el filtro de acción global
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add<CheckUserAccessFilter>(); // Añadir el filtro globalmente
+});
+
 
 var app = builder.Build();
 

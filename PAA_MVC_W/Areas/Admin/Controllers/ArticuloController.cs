@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using PAA_MVC_W.AccesoDatos.Repositorio;
 using PAA_MVC_W.AccesoDatos.Repositorio.IRepositorio;
+using PAA_MVC_W.Filters;
 using PAA_MVC_W.Modelos;
 using PAA_MVC_W.Modelos.ViewModels;
 using PAA_MVC_W.Utilidades;
@@ -11,6 +13,7 @@ using PAA_MVC_W.Utilidades;
 namespace PAA_MVC_W.Areas.Admin.Controllers
 {
     [Area("Admin")] //siempre se debe de poner a que area pertenece el controlador si no no va a correr
+    [TypeFilter(typeof(CustomAuthorizeFilter), Arguments = new object[] { "Administrador" })]
     public class ArticuloController : Controller
     {
 
@@ -112,9 +115,11 @@ namespace PAA_MVC_W.Areas.Admin.Controllers
         }
 
         [HttpGet]//medoto API de tipo get "IactionResult no solo devuelve lista sino tambien objetos ocn formato Json " y la mandaremos a llamar desde el js
+       
+
+
         public async Task<IActionResult> ObtenerTodos()
         {
-
             //accedemos a la unidad de trabajo y traemos la funcion obtener todos 
             var todos = await _unidadTrabajo.Articulo.ObtenerTodos(incluirPropiedades:"UnidadAuditora,DireccionGeneral"); 
             //aqui retornamos un Json y se esta renombrando la variable a "data" y asi es como se mandara a llamar desde JS

@@ -26,6 +26,7 @@ namespace PAA_MVC_W.AccesoDatos.Repositorio
             {
                 rolDb.Nombre = rol.Nombre;
                 rolDb.Descripcion = rol.Descripcion;
+                rolDb.Estado = rol.Estado;  
                 _db.Rols.Update(rolDb);
             }
         }

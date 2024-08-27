@@ -18,7 +18,8 @@ namespace PAA_MVC_W.Modelos
         [Required(ErrorMessage = "Descripcion es Requerido")]
         public string Descripcion { get; set; }
 
-        
+        [Required(ErrorMessage = "Estado es requerido")]
+        public bool Estado { get; set; }
 
     }
 }

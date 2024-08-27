@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using PAA_MVC_W.Utilidades;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PAA_MVC_W.Areas.Admin.Controllers
 {
     [Area("Admin")]
+
     public class UsuarioController : Controller
     {
         private readonly IUnidadTrabajo _unidadTrabajo;
@@ -106,8 +108,15 @@ namespace PAA_MVC_W.Areas.Admin.Controllers
 
 
 
-        [HttpGet]
-      
+        [HttpGet]//medoto API de tipo get "IactionResult no solo devuelve lista sino tambien objetos ocn formato Json " y la mandaremos a llamar desde el js
+        public async Task<IActionResult> ObtenerTodos()
+        {
+
+            //accedemos a la unidad de trabajo y traemos la funcion obtener todos 
+            var todos = await _unidadTrabajo.Usuario.ObtenerTodos(incluirPropiedades: "UnidadAuditora,DireccionGeneral,Rol");
+            //aqui retornamos un Json y se esta renombrando la variable a "data" y asi es como se mandara a llamar desde JS
+            return Json(new { data = todos });
+        }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)

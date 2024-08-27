@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PAA_MVC_W.AccesoDatos.Repositorio;
@@ -11,6 +12,7 @@ using System.ComponentModel.DataAnnotations;
 namespace PAA_MVC_W.Areas.Admin.Controllers
 {
     [Area("Capturista")]
+  
     public class ActividadController : Controller
     {
         private readonly IUnidadTrabajo _unidadTrabajo;

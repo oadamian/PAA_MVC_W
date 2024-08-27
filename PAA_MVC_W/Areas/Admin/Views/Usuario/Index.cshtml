@@ -9,11 +9,11 @@
 <div class="row">
     <div class="col-lg-6">
         <h2 class="text-primary">
-            Lista de Articulo
+            Lista de Usuarios
         </h2>
     </div>
     <div class="col-lg-6">
-        <a class="btn btn-outline-primary" asp-action="Upsert"><i class="bi bi-plus-square-fill"></i> Crear Nuevo Articulo</a>
+        <a class="btn btn-outline-primary" asp-action="Upsert"><i class="bi bi-plus-square-fill"></i> Crear Nuevo Usuario</a>
     </div>
 
     <br />
@@ -21,11 +21,13 @@
         <table  id="tblDatos" class="table table-responsive table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Número</th>
-                    <th>Numeral</th>
-                    <th>Descripción</th>
-                    <th>Unidad Auditora</th>
-                    <th>Dirección General</th>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Rol</th>
+                    <th>UA</th>
+                    <th>DG</th>
                     <th>Estado</th>
                     <th></th>
                 </tr>
@@ -35,5 +37,5 @@
 </div>
 
 @section Scripts{
-    <script src="~/js/Admin/articulo.js"></script>
+    <script src="~/js/Admin/usuario.js"></script>
 }

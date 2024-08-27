@@ -1,0 +1,37 @@
+﻿@{
+ViewData["Title"] = "Acceso Denegado";
+
+    // Verificar si User.Identity o Name es null
+    var windowsUserName = User.Identity?.Name?.Replace("ASF\\", "");
+
+    if (string.IsNullOrEmpty(windowsUserName))
+    {
+        windowsUserName = "Usuario desconocido"; // Mensaje por defecto si el nombre de usuario no está disponible
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- SweetAlert2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        // Mostrar SweetAlert2 al cargar la página
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Acceso Denegado',
+                text: `El usuario @windowsUserName no cuenta con permiso de ingresar al sistema. Favor de ponerse en contacto con "oadamian@asf.gob.mx"`,
+                confirmButtonText: 'Aceptar'
+            });
+        });
+    </script>
+</body>
+</html>

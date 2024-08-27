@@ -16,7 +16,7 @@ namespace PAA_MVC_W.AccesoDatos.Configuracion
             builder.HasKey(u => u.Id);
             builder.Property(r => r.Nombre).IsRequired().HasMaxLength(50);
             builder.Property(u => u.Descripcion).IsRequired();
-
+            builder.Property(x => x.Estado).IsRequired();
         }
     }
 }

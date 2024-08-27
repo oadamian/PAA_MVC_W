@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using PAA_MVC_W.AccesoDatos.Repositorio.IRepositorio;
 using PAA_MVC_W.Modelos;
@@ -9,6 +10,7 @@ using PAA_MVC_W.Utilidades;
 namespace PAA_MVC_W.Areas.Admin.Controllers
 {
     [Area("Admin")] //siempre se debe de poner a que area pertenece el controlador si no no va a correr
+
     public class DireccionGeneralController : Controller
     {
 
