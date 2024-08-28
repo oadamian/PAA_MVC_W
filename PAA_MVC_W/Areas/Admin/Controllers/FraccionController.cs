@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using PAA_MVC_W.AccesoDatos.Repositorio;
 using PAA_MVC_W.AccesoDatos.Repositorio.IRepositorio;
+using PAA_MVC_W.Filters;
 using PAA_MVC_W.Modelos;
 using PAA_MVC_W.Modelos.ViewModels;
 using PAA_MVC_W.Utilidades;
@@ -12,7 +13,7 @@ using PAA_MVC_W.Utilidades;
 namespace PAA_MVC_W.Areas.Admin.Controllers
 {
     [Area("Admin")] //siempre se debe de poner a que area pertenece el controlador si no no va a correr
-
+    [TypeFilter(typeof(CustomAuthorizeFilter), Arguments = new object[] { new string[] { "Administrador" } })]
     public class FraccionController : Controller
     {
 

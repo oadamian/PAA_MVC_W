@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@inject IRoleService RoleService
+
+@{
+    var userRole = await RoleService.UserHasAnyRoleAsync(User.Identity.Name, "Administrador", "Capturista_UA_Admin", "Capturista_UA", "Capturista_DG");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -39,21 +45,25 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
 
+                       @if (await RoleService.UserHasAnyRoleAsync(User.Identity.Name, "Administrador"))
+                        {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                 Catalogos
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="UnidadAuditora" asp-action="Index">UA's</a></li>
-                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="DireccionGeneral" asp-action="Index">DG's</a></li>
-                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Articulo" asp-action="Index">Articulos</a></li>
-                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Fraccion" asp-action="Index">Fracciones</a></li>
-                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Usuario" asp-action="Index">Usuarios</a></li>
-                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Rol" asp-action="Index">Roles</a></li>
 
-                            </ul>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="UnidadAuditora" asp-action="Index">UA's</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="DireccionGeneral" asp-action="Index">DG's</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="Articulo" asp-action="Index">Articulos</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="Fraccion" asp-action="Index">Fracciones</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="Usuario" asp-action="Index">Usuarios</a></li>
+                                    <li><a class="dropdown-item" asp-area="Admin" asp-controller="Rol" asp-action="Index">Roles</a></li>
+                                </ul>
+                           
+                           
                         </li>
-
+                        }
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                 Capturista

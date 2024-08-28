@@ -52,7 +52,7 @@ function loadDataTable() {
                        <a href="/Admin/Usuario/Upsert/${data}" class="btn btn-success text-white" style="cursor:pointer">
                            <i class="bi bi-pencil-square"></i>
                        </a>
-                       <a onclick=Delete("/Admin/Usuario/Delete/${data}") class="btn btn-danger text-white style="cursos:pointer">
+                       <a onclick=Delete("/Admin/Usuario/Delete/${data}") class="btn btn-danger text-white" style="cursos:pointer">
                        <i class="bi bi-trash3-fill"></i>
                           
                        </a>

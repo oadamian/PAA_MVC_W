@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using PAA_MVC_W.AccesoDatos.Repositorio.IRepositorio;
+using PAA_MVC_W.Filters;
 using PAA_MVC_W.Modelos;
 using PAA_MVC_W.Utilidades;
 //Paso 11 se crean los ocntroladores para las tablas 
@@ -9,7 +10,7 @@ using PAA_MVC_W.Utilidades;
 namespace PAA_MVC_W.Areas.Admin.Controllers
 {
     [Area("Admin")] //siempre se debe de poner a que area pertenece el controlador si no no va a correr
-  
+    [TypeFilter(typeof(CustomAuthorizeFilter), Arguments = new object[] { new string[] { "Administrador" } })]
     public class UnidadAuditoraController : Controller
     {
 
@@ -20,6 +21,7 @@ namespace PAA_MVC_W.Areas.Admin.Controllers
         {
             _unidadTrabajo = unidadTrabajo;// se inicializa
         }
+
 
         public IActionResult Index()
         {

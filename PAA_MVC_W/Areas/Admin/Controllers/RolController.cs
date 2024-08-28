@@ -3,12 +3,13 @@ using PAA_MVC_W.Modelos;
 using PAA_MVC_W.AccesoDatos.Repositorio.IRepositorio;
 using PAA_MVC_W.Utilidades;
 using Microsoft.AspNetCore.Authorization;
+using PAA_MVC_W.Filters;
 //paso 7
 //Se crean los controles para cada uno de los modulos 
 namespace SistemaInventario.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
+    [TypeFilter(typeof(CustomAuthorizeFilter), Arguments = new object[] { new string[] { "Administrador" } })]
     public class RolController : Controller
     {
 

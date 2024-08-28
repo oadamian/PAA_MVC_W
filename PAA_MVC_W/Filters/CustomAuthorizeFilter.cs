@@ -8,12 +8,12 @@ namespace PAA_MVC_W.Filters
 {
     public class CustomAuthorizeFilter : IAsyncAuthorizationFilter
     {
-        private readonly string _role;
+        private readonly string[] _roles;
         private readonly IUnidadTrabajo _unidadTrabajo;
 
-        public CustomAuthorizeFilter(string role, IUnidadTrabajo unidadTrabajo)
+        public CustomAuthorizeFilter(string[] roles, IUnidadTrabajo unidadTrabajo)
         {
-            _role = role;
+            _roles = roles;
             _unidadTrabajo = unidadTrabajo;
         }
 
@@ -33,7 +33,7 @@ namespace PAA_MVC_W.Filters
             var usuario = await _unidadTrabajo.Usuario.ObtenerPrimero(u => u.UserName == user);
             var rol = await _unidadTrabajo.Rol.Obtener(usuario.RolId.Value);
 
-            if (usuario == null || rol.Nombre != _role)
+            if (usuario == null || !_roles.Contains(rol.Nombre))
             {
                 context.Result = new ForbidResult();
                 return;
@@ -41,5 +41,6 @@ namespace PAA_MVC_W.Filters
 
             // Si el usuario tiene el rol requerido, continuar
         }
+
     }
 }

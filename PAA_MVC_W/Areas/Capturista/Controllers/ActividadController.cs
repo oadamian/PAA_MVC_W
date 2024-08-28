@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PAA_MVC_W.AccesoDatos.Repositorio;
 using PAA_MVC_W.AccesoDatos.Repositorio.IRepositorio;
+using PAA_MVC_W.Filters;
 using PAA_MVC_W.Modelos;
 using PAA_MVC_W.Modelos.ViewModels;
 using PAA_MVC_W.Utilidades;
@@ -12,7 +13,8 @@ using System.ComponentModel.DataAnnotations;
 namespace PAA_MVC_W.Areas.Admin.Controllers
 {
     [Area("Capturista")]
-  
+    //[TypeFilter(typeof(CustomAuthorizeFilter), Arguments = new object[] { "Capturista_UA_Admin" })]
+    [TypeFilter(typeof(CustomAuthorizeFilter), Arguments = new object[] { new string[] { "Administrador","Capturista_UA_Admin", "Capturista_UA", "Capturista_DG" } })]
     public class ActividadController : Controller
     {
         private readonly IUnidadTrabajo _unidadTrabajo;

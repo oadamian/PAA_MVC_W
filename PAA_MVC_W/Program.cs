@@ -34,6 +34,8 @@ builder.Services.AddMvc(options =>
 {
     options.Filters.Add<CheckUserAccessFilter>(); // Añadir el filtro globalmente
 });
+builder.Services.AddScoped<IRoleService, RoleService>();//
+
 
 
 var app = builder.Build();

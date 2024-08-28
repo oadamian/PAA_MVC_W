@@ -13,7 +13,8 @@ using PAA_MVC_W.Utilidades;
 namespace PAA_MVC_W.Areas.Admin.Controllers
 {
     [Area("Admin")] //siempre se debe de poner a que area pertenece el controlador si no no va a correr
-    [TypeFilter(typeof(CustomAuthorizeFilter), Arguments = new object[] { "Administrador" })]
+    [TypeFilter(typeof(CustomAuthorizeFilter), Arguments = new object[] { new string[] { "Administrador" } })]
+
     public class ArticuloController : Controller
     {
 

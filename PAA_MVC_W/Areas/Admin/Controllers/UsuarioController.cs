@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 using System.Linq;
 using PAA_MVC_W.Utilidades;
 using Microsoft.AspNetCore.Authorization;
+using PAA_MVC_W.Filters;
 
 namespace PAA_MVC_W.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
+    [TypeFilter(typeof(CustomAuthorizeFilter), Arguments = new object[] { new string[] { "Administrador" } })]
     public class UsuarioController : Controller
     {
         private readonly IUnidadTrabajo _unidadTrabajo;
@@ -88,13 +89,15 @@ namespace PAA_MVC_W.Areas.Admin.Controllers
                 {
                     await _unidadTrabajo.Usuario.Agregar(usuarioVM.Usuario);
                     TempData[DS.Exitosa] = "Usuario Creado Exitsamente";
+                    await _unidadTrabajo.Guardar();
                 }
                 else
                 {
                     _unidadTrabajo.Usuario.Actualizar(usuarioVM.Usuario);
                     TempData[DS.Exitosa] = "Usuario Actualizado Exitsamente";
+                    await _unidadTrabajo.Guardar();
                 }
-                await _unidadTrabajo.Guardar();
+               //await _unidadTrabajo.Guardar();
                 return RedirectToAction(nameof(Index));
             }
             TempData[DS.Error] = "Error al insertar el Usuario";
@@ -118,7 +121,7 @@ namespace PAA_MVC_W.Areas.Admin.Controllers
             return Json(new { data = todos });
         }
 
-        [HttpDelete]
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var usuarioDb = await _unidadTrabajo.Usuario.Obtener(id);

@@ -30,6 +30,7 @@ namespace PAA_MVC_W.AccesoDatos.Repositorio
                 usuarioDb.Nombres = usuario.Nombres;
                 usuarioDb.Apellidos = usuario.Apellidos;
                 usuarioDb.Estado = usuario.Estado;
+                usuarioDb.RolId = usuario.RolId;
                 usuarioDb.UnidadAuditoraId = usuario.UnidadAuditoraId;
                 usuarioDb.DireccionGeneralId = usuario.DireccionGeneralId;
 
